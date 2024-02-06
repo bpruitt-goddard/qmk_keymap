@@ -149,108 +149,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-  if (!is_keyboard_master()) {
-    return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
-  }
-  return rotation;
-}
-
-void oled_render_layer_state(void) {
-  oled_write_P(PSTR("Layer: "), false);
-  switch (get_highest_layer(layer_state|default_layer_state)) {
-    case _BASE:
-      oled_write_ln_P(PSTR("Base"), false);
-      break;
-    case _MEDIA:
-      oled_write_ln_P(PSTR("Media"), false);
-      break;
-    case _NAV:
-      oled_write_ln_P(PSTR("Nav"), false);
-      break;
-    case _BUTTON:
-      oled_write_ln_P(PSTR("Button"), false);
-      break;
-    case _SYMBOL:
-      oled_write_ln_P(PSTR("Symbol"), false);
-      break;
-    case _NUM:
-      oled_write_ln_P(PSTR("Num"), false);
-      break;
-    case _FUNCTION:
-      oled_write_ln_P(PSTR("Function"), false);
-      break;
-    case _GAMING:
-      oled_write_ln_P(PSTR("Gaming"), false);
-      break;
-  }
-}
-
-const char code_to_name[60] = {
-  ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
-  'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
-  'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-  '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-  'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
-  '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
-
-char key_name = ' ';
-uint16_t last_keycode;
-uint8_t last_row;
-uint8_t last_col;
-
-void set_keylog(uint16_t keycode, keyrecord_t *record) {
-  key_name = ' ';
-  last_keycode = keycode;
-  if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) ||
-      (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) { last_keycode = keycode & 0xFF; }
-  if (keycode < 60) {
-    key_name = code_to_name[keycode];
-  }
-  last_row = record->event.key.row;
-  last_col = record->event.key.col;
-}
-
-const char *depad_str(const char *depad_str, char depad_char) {
-  while (*depad_str == depad_char) ++depad_str;
-  return depad_str;
-}
-
-void oled_render_keylog(void) {
-  const char *last_row_str = get_u8_str(last_row, ' ');
-  oled_write(depad_str(last_row_str, ' '), false);
-  oled_write_P(PSTR("x"), false);
-  const char *last_col_str = get_u8_str(last_col, ' ');
-  oled_write(depad_str(last_col_str, ' '), false);
-  oled_write_P(PSTR(", k"), false);
-  const char *last_keycode_str = get_u16_str(last_keycode, ' ');
-  oled_write(depad_str(last_keycode_str, ' '), false);
-  oled_write_P(PSTR(":"), false);
-  oled_write_char(key_name, false);
-}
-
-void oled_render_logo(void) {
-  static const char PROGMEM crkbd_logo[] = {
-    0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8a, 0x8b, 0x8c, 0x8d, 0x8e, 0x8f, 0x90, 0x91, 0x92, 0x93, 0x94,
-    0xa0, 0xa1, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6, 0xa7, 0xa8, 0xa9, 0xaa, 0xab, 0xac, 0xad, 0xae, 0xaf, 0xb0, 0xb1, 0xb2, 0xb3, 0xb4,
-    0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0xc5, 0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xcb, 0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0xd2, 0xd3, 0xd4,
-    0};
-  oled_write_P(crkbd_logo, false);
-}
-
-bool oled_task_user(void) {
-  if (is_keyboard_master()) {
-    oled_render_layer_state();
-    oled_render_keylog();
-  } else {
-    oled_render_logo();
-  }
-  return false;
-}
+// void oled_render_layer_state(void) {
+//   oled_write_P(PSTR("Layer: "), false);
+//   switch (get_highest_layer(layer_state|default_layer_state)) {
+//     case _BASE:
+//       oled_write_ln_P(PSTR("Base"), false);
+//       break;
+//     case _MEDIA:
+//       oled_write_ln_P(PSTR("Media"), false);
+//       break;
+//     case _NAV:
+//       oled_write_ln_P(PSTR("Nav"), false);
+//       break;
+//     case _BUTTON:
+//       oled_write_ln_P(PSTR("Button"), false);
+//       break;
+//     case _SYMBOL:
+//       oled_write_ln_P(PSTR("Symbol"), false);
+//       break;
+//     case _NUM:
+//       oled_write_ln_P(PSTR("Num"), false);
+//       break;
+//     case _FUNCTION:
+//       oled_write_ln_P(PSTR("Function"), false);
+//       break;
+//     case _GAMING:
+//       oled_write_ln_P(PSTR("Gaming"), false);
+//       break;
+//   }
+// }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
-    set_keylog(keycode, record);
 
     switch(keycode) {
       case MC_ARROW:
