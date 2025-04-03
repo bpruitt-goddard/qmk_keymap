@@ -1,6 +1,6 @@
 {
     "userspace_version": "1.1",
     "build_targets": [
-        ["crkbd", "bpruitt-goddard"]
+        ["crkbd/rev1", "bpruitt-goddard"]
     ]
 }
