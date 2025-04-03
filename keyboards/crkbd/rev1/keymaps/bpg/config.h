@@ -22,8 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //#define USE_MATRIX_I2C
 
-//#define QUICK_TAP_TERM 0
-//#define TAPPING_TERM 100
 #define MASTER_RIGHT
 #define TAPPING_TERM 200
 #define TAPPING_FORCE_HOLD
@@ -31,9 +29,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CHORDAL_HOLD
 
 #ifdef RGBLIGHT_ENABLE
-    #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-    #define RGBLIGHT_LIMIT_VAL 120
-    #define RGBLIGHT_HUE_STEP 10
-    #define RGBLIGHT_SAT_STEP 17
-    #define RGBLIGHT_VAL_STEP 17
+#    undef RGBLED_NUM
+#    define RGBLIGHT_ANIMATIONS
+#    define RGBLED_NUM 54
+#    undef RGBLED_SPLIT
+#    define RGBLED_SPLIT \
+        { 27, 27 }
+#    define RGBLIGHT_LIMIT_VAL 120
+#    define RGBLIGHT_HUE_STEP  10
+#    define RGBLIGHT_SAT_STEP  17
+#    define RGBLIGHT_VAL_STEP  17
+#    define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_RAINBOW_SWIRL
 #endif
+
+#define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
