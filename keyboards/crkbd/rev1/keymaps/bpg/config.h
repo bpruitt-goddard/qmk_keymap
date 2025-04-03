@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM 200
 #define TAPPING_FORCE_HOLD
 #define PERMISSIVE_HOLD
+#define CHORDAL_HOLD
 
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
