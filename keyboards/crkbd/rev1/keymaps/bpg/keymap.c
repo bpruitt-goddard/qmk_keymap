@@ -17,19 +17,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include QMK_KEYBOARD_H
-#include <stdio.h>
-#include "features/achordion.h"
 
 enum board_layers {
-  _BASE,
-  _MEDIA,
-  _NAV,
-  _BUTTON,
-  _SYMBOL,
-  _NUM,
-  _FUNCTION,
-  _GAMING
-};
+    _BASE,
+    _MEDIA,
+    _NAV,
+    _BUTTON,
+    _SYMBOL,
+    _NUM,
+    _FUNCTION,
+    _GAMING
+  };
 
 // SAFE_RANGE must be used to tag the first element of the enum.
 // DYNAMIC_MACRO_RANGE must always be the last element of the enum if other
@@ -150,50 +148,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-// void oled_render_layer_state(void) {
-//   oled_write_P(PSTR("Layer: "), false);
-//   switch (get_highest_layer(layer_state|default_layer_state)) {
-//     case _BASE:
-//       oled_write_ln_P(PSTR("Base"), false);
-//       break;
-//     case _MEDIA:
-//       oled_write_ln_P(PSTR("Media"), false);
-//       break;
-//     case _NAV:
-//       oled_write_ln_P(PSTR("Nav"), false);
-//       break;
-//     case _BUTTON:
-//       oled_write_ln_P(PSTR("Button"), false);
-//       break;
-//     case _SYMBOL:
-//       oled_write_ln_P(PSTR("Symbol"), false);
-//       break;
-//     case _NUM:
-//       oled_write_ln_P(PSTR("Num"), false);
-//       break;
-//     case _FUNCTION:
-//       oled_write_ln_P(PSTR("Function"), false);
-//       break;
-//     case _GAMING:
-//       oled_write_ln_P(PSTR("Gaming"), false);
-//       break;
-//   }
-// }
-
-void matrix_scan_user(void) {
-  achordion_task();
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (!process_achordion(keycode, record)) { return false; }
-
-  if (record->event.pressed) {
-
-    switch(keycode) {
-      case MC_ARROW:
-        SEND_STRING("=>");
-        return false;
+    if (record->event.pressed) {
+      switch(keycode) {
+        case MC_ARROW:
+          SEND_STRING("=>");
+          return false;
+      }
     }
-  }
-  return true;
+    return true;
 }
