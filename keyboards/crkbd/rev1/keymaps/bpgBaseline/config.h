@@ -21,7 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 //#define USE_MATRIX_I2C
-#define MASTER_RIGHT
 
 //#define QUICK_TAP_TERM 0
 //#define TAPPING_TERM 100
