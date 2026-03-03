@@ -21,10 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #define MASTER_RIGHT
-#define TAPPING_TERM 200
-#define TAPPING_FORCE_HOLD
-#define PERMISSIVE_HOLD
+#define TAPPING_TERM 175
 #define CHORDAL_HOLD
+
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 
 #ifdef RGBLIGHT_ENABLE
   #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
