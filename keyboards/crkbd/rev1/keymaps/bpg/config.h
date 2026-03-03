@@ -24,6 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM 175
 #define CHORDAL_HOLD
 
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+
 #ifdef RGBLIGHT_ENABLE
   #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
   #define RGBLIGHT_LIMIT_VAL 120
