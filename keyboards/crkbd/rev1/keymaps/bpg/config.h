@@ -21,9 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #define MASTER_RIGHT
-#define TAPPING_TERM 200
-#define TAPPING_FORCE_HOLD
-#define PERMISSIVE_HOLD
+#define TAPPING_TERM 175
 #define CHORDAL_HOLD
 
 #ifdef RGBLIGHT_ENABLE
